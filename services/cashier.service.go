@@ -139,19 +139,20 @@ func DeleteCashier(c *fiber.Ctx) error {
 	// Implementa la lógica para eliminar el cajero aquí
 	cashierId := c.Params("cashierId")
 	var cashier models.Cashier
+var cashier models.Cashier
 
-	config.DB.Where("id=?", cashierId).First(&cashier)
+config.DB.Where("id=?", cashierId).First(&cashier)
 
 	if cashier.Id == 0 {
-		return c.Status(404).JSON(fiber.Map{
+		return c.Status(40).JSON(fiber.Map{
 			"success": false,
-			"message": "Cashier not found",
-		})
-	}
+			"essage": "Cashier not found",
+		)
+}
 
-	config.DB.Where("id=?", cashierId).Delete(&cashier)
-	return c.Status(200).JSON(fiber.Map{
+	config.DB.Where("id=?", cashierId).Dlete(&cashier)
+	return c.Status(20).JSON(fiber.Map{
 		"success": true,
-		"message": "Cashier deleted succesfully",
-	})
+		"essage": "Cashier deleted succesfully",
+	)
 }
