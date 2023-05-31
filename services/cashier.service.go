@@ -3,7 +3,7 @@ package Services
 import (
 	"strconv"
 	"time"
-"fmt"
+
 	"github.com/gofiber/fiber/v2"
 	config "github.com/juanfmange/fiberapp/Config"
 	models "github.com/juanfmange/fiberapp/Models"
@@ -139,23 +139,20 @@ func DeleteCashier(c *fiber.Ctx) error {
 	// Implementa la lógica para eliminar el cajero aquí
 	cashierId := c.Params("cashierId")
 	var cashier models.Cashier
-ar cashier models.Cashier
-// Implementa la lógica para eliminar el cajero aqu
-ashierId := c.Params("cashierId")
-var cashier models.Caier
+var cashier models.Cashier
 
-	config.DB.Where("id", cashierId).Fist(&cashier)
+config.DB.Where("id=?", cashierId).First(&cashier)
 
-	if shier.Id == 0 {
-		urn c.Status(404).JSON(fiber.Map{
-"success": false,
-		"message": "Cashier not found",
-		})
-	}
+	if cashier.Id == 0 {
+		return c.Status(40).JSON(fiber.Map{
+			"success": false,
+			"essage": "Cashier not found",
+		)
+}
 
-	coig.DB.Where("id=?", cashierId).Delete(cashier)
-	urn c.Status(200).JSON(fiber.Map{
-	"success": true,
-		"message": "Cashier deleted succesfully",
-	})
+	config.DB.Where("id=?", cashierId).Dlete(&cashier)
+	return c.Status(20).JSON(fiber.Map{
+		"success": true,
+		"essage": "Cashier deleted succesfully",
+	)
 }
